@@ -11,7 +11,6 @@ import security.loginsecurity.home.service.CalendarService;
 
 import java.time.LocalDate;
 
-
 @Controller
 public class HomeController {
     @Autowired
@@ -29,8 +28,10 @@ public class HomeController {
             date = LocalDate.now().toString();  // 파라미터가 없는 경우 오늘 날짜를 문자열로 변환하여 사용
         }
         model.addAttribute("date", date);
-        return "redirect:/memo/memo?date=" + date;  // MemoController의 경로로 리다이렉트
+        return "memo";  // Thymeleaf 템플릿 이름 반환
     }
+
+
 
     @GetMapping("/aiDiary")
     public String redirectToAiDiary() {

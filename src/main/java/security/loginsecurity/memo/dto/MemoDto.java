@@ -4,18 +4,15 @@ public class MemoDto {
     private Long id;
     private LocalDate date;
     private String content;
-    private Long memberId;
 
     // 기본 생성자 추가
     public MemoDto() {}
 
     // 모든 필드를 초기화하는 생성자
-    public MemoDto(Long id, LocalDate date, String content, Long memberId) {
+    public MemoDto(Long id, LocalDate date, String content) {
         this.id = id;
         this.date = date;
         this.content = content;
-        this.memberId = memberId;
-
     }
 
     public MemoDto(LocalDate date, String content) {
@@ -47,13 +44,4 @@ public class MemoDto {
     public void setContent(String content) {
         this.content = content;
     }
-
-    public Long getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
-    }
-
 }
