@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Memo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        nav, footer {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav {
+            top: 0;
+        }
+
+        footer {
+            bottom: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 80px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <span>Byte The Bive</span>
+</nav>
+<div class="container">
+    <!-- Add New Memo Form -->
+    <h2>Add New Memo</h2>
+    <form action="/memo/memo/save" method="post">
+        <input type="hidden" name="date" th:value="${date}">
+        <div class="form-group">
+            <label for="content">Add New Memo</label>
+            <textarea id="content" name="content" rows="3"></textarea>
+        </div>
+        <input class="button" type="submit" value="Save">
+    </form>
+
+    <!-- Existing Memos -->
+    <h2>Existing Memos for <span th:text="${date}"></span></h2>
+    <ul>
+        <li th:each="memo : ${memos}">
+            <span th:text="${memo.content}"></span>
+            <a th:href="@{/memo/memo/edit/{id}(id=${memo.id})}">Edit</a> <!-- 수정 버튼 추가 -->
+        </li>
+    </ul>
+</div>
+<footer>
+    <a href="/" class="button">Home</a>
+    <a href="/mypage" class="button">Mypage</a>
+</footer>
+</body>
+</html>
