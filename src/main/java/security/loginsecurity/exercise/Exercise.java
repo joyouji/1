@@ -16,11 +16,6 @@ public class Exercise {
     @Id
     private Long id;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @MapsId
-    @JoinColumn(name = "id")
-    private Member member;
-
     @Setter
     private String exercise;
 
