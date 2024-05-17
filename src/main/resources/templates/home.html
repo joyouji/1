@@ -117,6 +117,12 @@
             background-color: #007BFF;
             color: white;
         }
+
+        .exercise {
+            text-align: left;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
     </style>
     <script>
         $(document).ready(function() {
@@ -158,6 +164,9 @@
     <span>Byte The Bive</span>
 </nav>
 <div class="container">
+    <div class="exercise">
+        <p>오늘의 목표는 <span th:text="${exercise}"></span> <span th:text="${goalToday}"></span>개(분)입니다.</p>
+    </div>
     <div class="button-bar">
         <a class="calendar-button" href="/aiDiary">AI Diary</a>
         <a class="calendar-button" href="/memo">Memo</a>
