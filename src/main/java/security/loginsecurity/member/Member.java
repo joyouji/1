@@ -8,7 +8,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import security.loginsecurity.exercise.Exercise;
 
 import java.util.Collection;
 import java.util.List;
@@ -36,9 +35,6 @@ public class Member implements UserDetails {
 
     @Column(name = "name",nullable = false)
     private String name;
-
-    @OneToOne(mappedBy = "member", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-    private Exercise exercise;
 
 
 

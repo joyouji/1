@@ -117,12 +117,6 @@
             background-color: #007BFF;
             color: white;
         }
-
-        .exercise {
-            text-align: left;
-            font-size: 20px;
-            margin-bottom: 20px;
-        }
     </style>
     <script>
         $(document).ready(function() {
@@ -164,13 +158,10 @@
     <span>Byte The Bive</span>
 </nav>
 <div class="container">
-    <div class="exercise">
-        <p>오늘의 목표는 <span th:text="${exercise}"></span> <span th:text="${goalToday}"></span>개(분)입니다.</p>
-    </div>
     <div class="button-bar">
         <a class="calendar-button" href="/aiDiary">AI Diary</a>
         <a class="calendar-button" href="/memo">Memo</a>
-        <a class="calendar-button" href="/survey">P Test</a>
+        <a class="calendar-button" href="/pTest">P Test</a>
     </div>
     <div id="calendar"></div>
     <!-- 날짜 선택 시 나타나는 프레임 -->
@@ -182,7 +173,7 @@
 </div>
 <footer>
     <a class="footer-button" href="/">Home</a>
-    <a class="footer-button" href="/myPage">Mypage</a>
+    <a class="footer-button" href="/mypage">Mypage</a>
 </footer>
 </body>
 </html>
