@@ -11,24 +11,23 @@ public class MealDto {
     private LocalTime time;
     private List<String> menus;
     private int rating;
-    private Long memberId;
 
-    // Constructors
+    // Constructor
     public MealDto() {
     }
 
-    public MealDto(Long id, String mealType, LocalDate date, LocalTime time, List<String> menus, int rating, Long memberId) {
+    public MealDto(Long id, String mealType, LocalDate date, LocalTime time, List<String> menus, int rating) {
         this.id = id;
-        this.mealType = mealType;
+
+        this.mealType=mealType;
+
         this.date = date;
         this.time = time;
         this.menus = menus;
         this.rating = rating;
-        this.memberId = memberId;
     }
 
-    // Getters and Setters
-    // 기존 메소드들에 memberId 관련 메소드 추가
+    // Getters
     public Long getId() {
         return id;
     }
@@ -53,10 +52,7 @@ public class MealDto {
         return rating;
     }
 
-    public Long getMemberId() {
-        return memberId;
-    }
-
+    // Setters
     public void setId(Long id) {
         this.id = id;
     }
@@ -79,9 +75,5 @@ public class MealDto {
 
     public void setRating(int rating) {
         this.rating = rating;
-    }
-
-    public void setMemberId(Long memberId) {
-        this.memberId = memberId;
     }
 }
