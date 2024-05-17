@@ -73,6 +73,6 @@ public class HomeController {
 
     @GetMapping("/pTest")
     public String redirectToPTest() {
-        return "redirect:/pTest.html";
+        return "redirect:/survey";
     }
 }
