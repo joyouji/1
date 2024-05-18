@@ -31,16 +31,9 @@ public class HomeController {
         this.exerciseService = exerciseService;
     }
 
-    /*
     @GetMapping("/")
     public String redirectToHome() {
         return "redirect:/home";
-    }
-    */
-    @GetMapping("/")
-    public ModelAndView home() {
-        ModelAndView modelAndView = new ModelAndView("/home");
-        return modelAndView;
     }
 
     @GetMapping("/home")
@@ -69,10 +62,5 @@ public class HomeController {
     @GetMapping("/aiDiary")
     public String redirectToAiDiary() {
         return "redirect:/aiDiary.html";
-    }
-
-    @GetMapping("/pTest")
-    public String redirectToPTest() {
-        return "redirect:/survey";
     }
 }

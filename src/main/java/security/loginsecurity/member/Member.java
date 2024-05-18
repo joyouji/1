@@ -37,6 +37,9 @@ public class Member implements UserDetails {
     @Column(name = "name",nullable = false)
     private String name;
 
+    @OneToOne(mappedBy = "member", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    private Exercise exercise;
+
 
 
 
