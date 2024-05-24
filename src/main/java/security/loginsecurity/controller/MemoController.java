@@ -36,8 +36,7 @@ public class MemoController {
     public String showMemo(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, Model model) {
         List<MemoDto> memos = memoService.getMemosByDate(date);
         List<SleepDto> sleeps = sleepService.getAllSleeps();
-        String mealType = null;
-        List<MealDto> meals = mealService.getMealsByTypeAndDate(mealType,date);
+        List<MealDto> meals = mealService.getMealsByTypeAndDate(null, date);
         model.addAttribute("date", date);
         model.addAttribute("memos", memos);
         model.addAttribute("sleeps", sleeps);
@@ -51,23 +50,19 @@ public class MemoController {
         return "redirect:/memo/memo?date=" + date;
     }
 
-
     @GetMapping("/edit/{id}")
     public String editMemo(@PathVariable("id") Long id, Model model) {
         MemoDto memo = memoService.getMemoById(id);
-        List<SleepDto> sleeps = sleepService.getAllSleeps(); // 슬립 정보 가져오기
-        String mealType = null;
-        List<MealDto> meals = mealService.getMealsByTypeAndDate(mealType,LocalDate.now()); // 밀 정보 가져오기 (임시로 오늘 날짜를 사용)
+        List<SleepDto> sleeps = sleepService.getAllSleeps();
+        List<MealDto> meals = mealService.getMealsByTypeAndDate(null, LocalDate.now());
         if (memo != null) {
             model.addAttribute("memo", memo);
-            model.addAttribute("sleeps", sleeps); // 슬립 정보 전달
-            model.addAttribute("meals", meals); // 밀 정보 전달
+            model.addAttribute("sleeps", sleeps);
+            model.addAttribute("meals", meals);
             return "editMemo";
         }
         return "redirect:/memo";
     }
-
-
 
     @PostMapping("/update")
     public String updateMemo(@RequestParam("id") Long id, @RequestParam("content") String content) {
@@ -99,9 +94,18 @@ public class MemoController {
     }
 
     @PostMapping("/meals/update")
-    public String updateMeal(@ModelAttribute("meal") MealDto mealDto) {
-        mealService.saveMeal(mealDto);
-        return "redirect:/memo/memo?date=" + mealDto.getDate();
+    public String updateMeal(
+            @RequestParam("id") Long id,
+            @RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
+            @RequestParam("mealType") String mealType,
+            @RequestParam("mealTime") String mealTime,
+            @RequestParam("mealMenus") String mealMenus,
+            @RequestParam("mealRating") int mealRating) {
+        LocalTime time = LocalTime.parse(mealTime);
+        List<String> menus = Arrays.asList(mealMenus.split(","));
+        MealDto mealDto = new MealDto(id, mealType, date, time, menus, mealRating);
+        mealService.updateMeal(mealDto);
+        return "redirect:/memo/memo?date=" + date;
     }
 
     @PostMapping("/sleep/update")
@@ -109,5 +113,4 @@ public class MemoController {
         sleepService.saveSleep(sleepDto);
         return "redirect:/memo";
     }
-
 }
