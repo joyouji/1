@@ -46,7 +46,7 @@
             margin-bottom: 15px;
         }
 
-        textarea, input[type="time"] {
+        textarea, input[type="time"], select {
             width: 100%;
             padding: 10px;
             font-size: 16px;
@@ -64,13 +64,68 @@
             display: block;
             margin-top: 10px;
         }
+
+        .mood-selection img {
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            margin: 0 10px;
+        }
+
+        .mood-selection img.selected {
+            border: 2px solid #007BFF;
+            border-radius: 50%;
+        }
+
+        .alert {
+            color: red;
+            font-weight: bold;
+        }
+
+        .success {
+            color: green;
+            font-weight: bold;
+        }
     </style>
+    <script>
+        function selectMood(mood) {
+            document.querySelectorAll('.mood-selection img').forEach(img => {
+                img.classList.remove('selected');
+            });
+            document.getElementById(mood).classList.add('selected');
+            document.getElementById('mood').value = mood;
+        }
+    </script>
 </head>
 <body>
 <nav>
     <span>Byte The Bive</span>
 </nav>
 <div class="container">
+
+    <!-- Mood Form -->
+    <h2>여기서 오늘의 기분을 선택하고 업데이트하세요!</h2>
+    <form action="/memo/memo/mood/save" method="post">
+        <input type="hidden" name="date" th:value="${date}">
+        <input type="hidden" id="mood" name="mood" required>
+        <div class="form-group mood-selection">
+            <img id="Happy" src="/assets/2.png" onclick="selectMood('Happy')" alt="Happy">
+            <img id="Sad" src="/assets/4.png" onclick="selectMood('Sad')" alt="Sad">
+            <img id="Neutral" src="/assets/5.png" onclick="selectMood('Neutral')" alt="Neutral">
+            <img id="Angry" src="/assets/1.png" onclick="selectMood('Angry')" alt="Angry">
+            <img id="Excited" src="/assets/3.png" onclick="selectMood('Excited')" alt="Excited">
+        </div>
+        <div th:if="${moodSaved}" class="success">
+            기분선택완료!
+        </div>
+
+        <div th:if="${moodUpdated}" class="success">
+            기분을 업데이트했습니다!
+        </div>
+
+        <input class="button" type="submit" value="Save">
+    </form>
+
     <!-- Add New Memo Form -->
     <h2>Add New Memo</h2>
     <form action="/memo/memo/save" method="post">
@@ -132,10 +187,11 @@
         <input class="button" type="submit" value="Save">
     </form>
 
+
+
     <div>
         <a th:if="${not #lists.isEmpty(memos)}" th:href="@{/memo/memo/edit/{id}(id=${memos[0].id})}" class="button">Edit Memo</a>
     </div>
-
 
 </div>
 <footer>
