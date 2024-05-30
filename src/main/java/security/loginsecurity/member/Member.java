@@ -16,7 +16,6 @@ import java.util.List;
 @Table(name = "members")
 @NoArgsConstructor
 @Getter
-
 public class Member implements UserDetails {
 
     @Id
@@ -36,19 +35,13 @@ public class Member implements UserDetails {
     @Column(name = "name",nullable = false)
     private String name;
 
-
-
-
     @Builder
     public Member(String email , String password, String phoneNumber,String name){
         this.email=email;
         this.password=password;
         this.phoneNumber=phoneNumber;
         this.name=name;
-
     }
-
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -59,7 +52,6 @@ public class Member implements UserDetails {
     public String getUsername(){
         return email;
     }
-
 
     @Override
     public boolean isAccountNonExpired() {
@@ -81,8 +73,6 @@ public class Member implements UserDetails {
         return true;
     }
 
-
-
     // Business methods
     public void updateName(String name) {
         this.name = name;
@@ -95,13 +85,12 @@ public class Member implements UserDetails {
     public void updatePassword(String password, PasswordEncoder passwordEncoder) {
         this.password = passwordEncoder.encode(password);
     }
-     public void setPassword(String password) {
+
+    public void setPassword(String password) {
         this.password = password;
-     }
+    }
 
-
-
-
-
-
+    public void setId(Long id) {
+        this.id = id;
+    }
 }

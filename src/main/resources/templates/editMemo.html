@@ -103,19 +103,18 @@
     <!-- 밀 수정 폼 -->
     <h2>Edit Meal</h2>
     <form th:action="@{/memo/memo/meals/update}" method="post">
-        <div class="form-group">
-            <label>Select Meal Type:</label>
-            <label for="mealTypeBreakfast">
-                <input type="radio" id="mealTypeBreakfast" name="mealType" value="breakfast"> 아침
+        <div class="form-group toggle-btn">
+            <label>
+                <input type="radio" name="mealType" value="Breakfast"> 아침
             </label>
-            <label for="mealTypeLunch">
-                <input type="radio" id="mealTypeLunch" name="mealType" value="lunch"> 점심
+            <label>
+                <input type="radio" name="mealType" value="Lunch"> 점심
             </label>
-            <label for="mealTypeDinner">
-                <input type="radio" id="mealTypeDinner" name="mealType" value="dinner"> 저녁
+            <label>
+                <input type="radio" name="mealType" value="Dinner"> 저녁
             </label>
-            <label for="mealTypeSnack">
-                <input type="radio" id="mealTypeSnack" name="mealType" value="snack"> 간식
+            <label>
+                <input type="radio" name="mealType" value="Snack"> 간식
             </label>
         </div>
         <div class="form-group">
