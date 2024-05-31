@@ -109,11 +109,11 @@
         <input type="hidden" name="date" th:value="${date}">
         <input type="hidden" id="mood" name="mood" required>
         <div class="form-group mood-selection">
-            <img id="Happy" src="/assets/2.png" onclick="selectMood('Happy')" alt="Happy">
-            <img id="Sad" src="/assets/4.png" onclick="selectMood('Sad')" alt="Sad">
-            <img id="Neutral" src="/assets/5.png" onclick="selectMood('Neutral')" alt="Neutral">
-            <img id="Angry" src="/assets/1.png" onclick="selectMood('Angry')" alt="Angry">
-            <img id="Excited" src="/assets/3.png" onclick="selectMood('Excited')" alt="Excited">
+            <img id="Happy" src="/assets/mood/happy.png" onclick="selectMood('Happy')" alt="Happy">
+            <img id="Sad" src="/assets/mood/sad.png" onclick="selectMood('Sad')" alt="Sad">
+            <img id="Neutral" src="/assets/mood/neutral.png" onclick="selectMood('Neutral')" alt="Neutral">
+            <img id="Angry" src="/assets/mood/angry.png" onclick="selectMood('Angry')" alt="Angry">
+            <img id="Excited" src="/assets/mood/excited.png" onclick="selectMood('Excited')" alt="Excited">
         </div>
         <div th:if="${moodSaved}" class="success">
             기분선택완료!
